@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>မြန်မာကျား</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="game-container">
+        <header class="game-header">
+            <h1>မြန်မာကျား</h1>
+            <p>Myanmar Checkers</p>
+        </header>
+
+        <section class="game-info">
+            <div class="player white-player">
+                <span class="piece-icon white-piece"></span>
+                <span>အဖြူ</span>
+                <strong id="white-count">12</strong>
+            </div>
+
+            <div id="turn-indicator">အဖြူအလှည့်</div>
+
+            <div class="player black-player">
+                <span class="piece-icon black-piece"></span>
+                <span>အနက်</span>
+                <strong id="black-count">12</strong>
+            </div>
+        </section>
+
+        <section class="board-wrapper">
+            <div id="board" class="board"></div>
+        </section>
+
+        <section class="controls">
+            <button id="new-game">ပွဲအသစ်</button>
+            <button id="undo">နောက်ပြန်</button>
+        </section>
+
+        <section class="game-message">
+            <div id="message"></div>
+        </section>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+</html>

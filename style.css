@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #3d3025, #17130f);
+    font-family: "Noto Sans Myanmar", "Myanmar Text", sans-serif;
+    color: #fff;
+}
+
+.game-container {
+    width: min(96vw, 760px);
+    padding: 20px;
+}
+
+.game-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.game-header h1 {
+    font-size: clamp(28px, 6vw, 46px);
+    font-weight: 700;
+}
+
+.game-header p {
+    margin-top: 4px;
+    opacity: 0.65;
+    font-size: 14px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+}
+
+.player strong {
+    min-width: 24px;
+    text-align: center;
+}
+
+.piece-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.white-piece {
+    background: #f4f4f4;
+    border: 2px solid #aaa;
+}
+
+.black-piece {
+    background: #171717;
+    border: 2px solid #555;
+}
+
+#turn-indicator {
+    padding: 8px 14px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.board-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    width: min(92vw, 680px);
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    border: 8px solid #241b15;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+}
+
+.square {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.light-square {
+    background: #e6d2ad;
+}
+
+.dark-square {
+    background: #765438;
+    cursor: pointer;
+}
+
+.dark-square:hover {
+    filter: brightness(1.12);
+}
+
+.square.selected {
+    box-shadow: inset 0 0 0 5px #ffd54a;
+}
+
+.square.legal-move {
+    box-shadow: inset 0 0 0 5px rgba(80, 220, 120, 0.75);
+}
+
+.square.capture-move {
+    box-shadow: inset 0 0 0 5px rgba(255, 80, 80, 0.85);
+}
+
+.piece {
+    width: 72%;
+    height: 72%;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 -5px 0 rgba(0,0,0,0.25), 0 4px 7px rgba(0,0,0,0.4);
+    transition: transform 0.12s ease, filter 0.12s ease;
+}
+
+.piece:hover {
+    transform: scale(1.05);
+}
+
+.piece.white {
+    background: radial-gradient(circle at 35% 30%, #ffffff, #d8d8d8 60%, #999999);
+    border: 3px solid #888;
+}
+
+.piece.black {
+    background: radial-gradient(circle at 35% 30%, #555, #202020 60%, #050505);
+    border: 3px solid #000;
+}
+
+.piece.king::after {
+    content: "♛";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(18px, 4vw, 34px);
+    color: #d6a93a;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.controls button {
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    background: #8b623e;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+}
+
+.controls button:hover {
+    background: #a7784e;
+}
+
+.controls button:active {
+    transform: scale(0.96);
+}
+
+.game-message {
+    min-height: 32px;
+    margin-top: 12px;
+    text-align: center;
+    font-weight: 700;
+}
+
+@media (max-width: 600px) {
+    .game-container {
+        padding: 10px;
+    }
+
+    .game-info {
+        font-size: 13px;
+    }
+
+    .player {
+        padding: 6px 8px;
+    }
+
+    #turn-indicator {
+        padding: 6px 8px;
+    }
+
+    .board {
+        border-width: 4px;
+    }
+}
