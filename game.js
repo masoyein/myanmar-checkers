@@ -58,7 +58,7 @@ function isInside(row, col) {
 }
 
 function isDarkSquare(row, col) {
-    return (row + col) % 2 === 1;
+    return (row + col) % 2 === 0;
 }
 
 function cloneBoard(source) {
@@ -418,6 +418,25 @@ function countPieces(color) {
     return count;
 }
 
+function getSquareNumber(row, col) {
+    // Number playable squares from the bottom-left side, 1 → 32.
+    let number = 0;
+
+    for (let r = BOARD_SIZE - 1; r >= 0; r--) {
+        for (let c = 0; c < BOARD_SIZE; c++) {
+            if (isDarkSquare(r, c)) {
+                number++;
+
+                if (r === row && c === col) {
+                    return number;
+                }
+            }
+        }
+    }
+
+    return "";
+}
+
 function render() {
     const boardElement = document.getElementById("board");
     boardElement.innerHTML = "";
@@ -434,6 +453,14 @@ function render() {
 
             square.dataset.row = row;
             square.dataset.col = col;
+
+            // Myanmar Checkers board numbering: 1–32 on playable dark squares.
+            if (isDarkSquare(row, col)) {
+                const squareNumber = document.createElement("span");
+                squareNumber.className = "square-number";
+                squareNumber.textContent = getSquareNumber(row, col);
+                square.appendChild(squareNumber);
+            }
 
             if (selectedSquare &&
                 selectedSquare.row === row &&
